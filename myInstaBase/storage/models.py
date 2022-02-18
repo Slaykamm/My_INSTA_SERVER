@@ -4,6 +4,7 @@ from django.db import models
 
 
 
+
 class Author(models.Model):
     name = models.CharField(verbose_name='Name', unique=True, max_length=128)
     login = models.CharField(verbose_name='login', max_length=128)
@@ -19,7 +20,7 @@ class Author(models.Model):
 class Video(models.Model):
     title = models.CharField(verbose_name='Name', unique=True, max_length=128)
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
-    file = models.FileField(
+    video = models.FileField(
         upload_to='video/',
         blank=True,
         validators=[FileExtensionValidator(allowed_extensions=['mp4'])]

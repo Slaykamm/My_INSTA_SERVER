@@ -17,10 +17,21 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from rest_framework import routers
+from storage import views
+
+router = routers.DefaultRouter()
+router.register(r'api/video', views.VideoViewSet)
+router.register(r'api/author', views.AuthorViewSet)
+router.register(r'api/comments', views.CommentsViewSet)
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/video', include('storage.urls')),
+    path('api/video/', include('storage.urls')),
+    path('api/author/', include('storage.urls')),
+    path('api/comments/', include('storage.urls')),
+    path('', include(router.urls)),
 ]
 
 
